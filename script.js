@@ -58,7 +58,13 @@ async function fetchDilemma() {
 
     } catch (error) {
         console.error("Error fetching dilemma:", error);
-        caseDescriptionEl.innerHTML = `<p style="color: red;">Lo sentimos, ocurrió un error al generar el dilema: ${error.message}. Por favor, intenta de nuevo.</p>`;
+  // Try to get a meaningful message, otherwise stringify the error
+  let displayError = error.message || String(error);
+  // Avoid displaying "[object Object]" if possible
+  if (displayError === '[object Object]' && error.toString) {
+   displayError = error.toString();
+  }
+  caseDescriptionEl.innerHTML = `<p style="color: red;">Lo sentimos, ocurrió un error al generar el dilema: ${displayError}. Por favor, intenta de nuevo.</p>`;
         // Ensure question/options are cleared/hidden on error
         ethicalQuestionEl.textContent = '';
         ethicalQuestionHeadingEl.style.display = 'none';

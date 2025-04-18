@@ -1,0 +1,15 @@
+# Ignore Node.js dependency directory
+node_modules/
+
+# Ignore environment variables file
+.env
+.env*.local
+
+# Ignore Vercel build output directory
+.vercel/
+
+# Ignore macOS system files
+.DS_Store
+
+# Ignore Windows thumbnail cache files
+Thumbs.db

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Dilemas Éticos Médicos</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="description" content="Una herramienta interactiva para explorar dilemas éticos en medicina utilizando IA.">
+</head>
+<body>
+    <header>
+        <h1>Simulador de Dilemas Éticos Médicos</h1>
+    </header>
+
+    <main>
+        <section id="dilemma-section" aria-live="polite">
+            <h2>Caso Actual</h2>
+            <div id="case-description">
+                <p>Haz clic en "Generar Nuevo Dilema" para comenzar.</p>
+            </div>
+            <h3 id="ethical-question-heading" style="display: none;">Pregunta Ética</h3>
+            <p id="ethical-question"></p>
+            <div id="options-container">
+                <!-- Las opciones se cargarán aquí dinámicamente -->
+            </div>
+        </section>
+
+        <section id="analysis-section" style="display: none;" aria-live="polite">
+            <h2>Análisis de la Opción Seleccionada</h2>
+            <div id="analysis-text">
+                <!-- El análisis se mostrará aquí -->
+            </div>
+        </section>
+
+        <div id="controls">
+             <button id="new-dilemma-btn">Generar Nuevo Dilema</button>
+             <div id="loading-indicator" style="display: none;" role="status" aria-live="assertive">
+                Cargando dilema... ⏳
+             </div>
+        </div>
+
+    </main>
+
+    <footer>
+        <p id="disclaimer">
+            <strong>Aviso Legal:</strong> This tool is for educational purposes only. AI-generated content may not be fully accurate or reflect definitive ethical judgments. It does not substitute professional medical or ethical advice.
+        </p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

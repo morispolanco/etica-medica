@@ -92,7 +92,7 @@ export default async function handler(req, res) {
             typeof parsedData.analysis_mapping !== 'object' || Object.keys(parsedData.analysis_mapping).length !== parsedData.options.length)
         {
             console.error('Invalid structure received from Gemini:', parsedData);
-            return res.status(500).json({ error: 'Failed to generate dilemma due to invalid data structure from AI.' });
+            return res.status(500).json({ error: 'AI response structure invalid. Check server logs for details.' });
         }
 
         // Further validation: Check if all options have corresponding analysis
@@ -105,7 +105,7 @@ export default async function handler(req, res) {
         });
 
         if (!structureValid) {
-             return res.status(500).json({ error: 'Failed to generate dilemma due to incomplete analysis mapping from AI.' });
+             return res.status(500).json({ error: 'AI response incomplete (missing analysis). Check server logs.' });
         }
 
         console.log("Successfully generated and validated dilemma."); // Log success
@@ -116,8 +116,8 @@ export default async function handler(req, res) {
         console.error('Error calling Gemini API or processing response:', error);
         // Check for specific Gemini API errors if possible (e.g., blocked content)
         if (error.message.includes('SAFETY')) {
-             return res.status(500).json({ error: 'Failed to generate dilemma due to safety settings block.' });
+             return res.status(500).json({ error: 'AI generation blocked by safety settings.' });
         }
-        res.status(500).json({ error: 'Failed to generate dilemma due to server error.' });
+        res.status(500).json({ error: `Gemini API call failed: ${error.message || 'Unknown server error'}` }); // Include Gemini error message if available
     }
 }
